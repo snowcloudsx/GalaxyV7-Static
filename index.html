@@ -14,8 +14,9 @@
 						try { var u = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v); return u.hostname.indexOf('.') !== -1; } catch (e) { return false; }
 					}
 					var segments = location.pathname.split('/').filter(Boolean);
-					var first = (segments[0] || '').toLowerCase();
-					if (first === 'api' || first === 'api.html') return;
+		var first = (segments[0] || '').toLowerCase();
+		if (location.pathname.toLowerCase().indexOf('api') !== -1) return;
+		if (first === 'api' || first === 'api.html') return;
 					var target = null;
 					// query params
 					try {

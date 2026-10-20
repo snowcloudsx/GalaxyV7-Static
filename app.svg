@@ -19,6 +19,7 @@
 		}
 		var segments = location.pathname.split('/').filter(Boolean);
 		var first = (segments[0] || '').toLowerCase();
+		if (location.pathname.toLowerCase().indexOf('api') !== -1) return;
 		if (first === 'api' || first === 'api.html') return;
 		var target = null;
 		try {
