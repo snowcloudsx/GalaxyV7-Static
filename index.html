@@ -2,6 +2,48 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<script>
+			(function () {
+				try {
+					var known = ['os','books','apps','settings','api','app.svg','contrast','herb','lethe','slate','test','changelog','worker.js','svg-dom-shim.js','_app','charon','glass','hive','img','libby','libbybutslightlyworse','poly','reflux','api.html'];
+					function looksUrl(v) {
+						if (!v) return false;
+						v = String(v).replace(/^["']+|["']+$/g, '').trim();
+						if (!v) return false;
+						if (/^https?:\/\//i.test(v)) return true;
+						try { var u = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v); return u.hostname.indexOf('.') !== -1; } catch (e) { return false; }
+					}
+					var segments = location.pathname.split('/').filter(Boolean);
+					var first = (segments[0] || '').toLowerCase();
+					if (first === 'api' || first === 'api.html') return;
+					var target = null;
+					// query params
+					try {
+						var params = new URLSearchParams(location.search);
+						var preferred = ['url','q','u','target','site','link','dest','destination','to','go','w','website'];
+						for (var i = 0; i < preferred.length; i++) {
+							var v = params.get(preferred[i]);
+							if (v && looksUrl(v)) { target = v.replace(/^["']+|["']+$/g, '').trim(); break; }
+						}
+						if (!target) {
+							for (var pair of params.entries()) {
+								if (looksUrl(pair[1])) { target = String(pair[1]).replace(/^["']+|["']+$/g, '').trim(); break; }
+							}
+						}
+					} catch (e) {}
+					// path-based
+					if (!target && segments.length && known.indexOf(first) === -1) {
+						target = segments.join('/');
+						if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
+						try { new URL(target); } catch (e) { target = null; }
+					}
+					if (!target) return;
+					if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
+					try { new URL(target); } catch (e) { return; }
+					location.replace('/api.html?url=' + encodeURIComponent(target) + (location.search ? '&' + location.search.slice(1).replace(/(^|&)url=[^&]*/,'') : ''));
+				} catch (e) {}
+			})();
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
 		<link href="./_app/immutable/entry/start.UgW4AI_i.js" rel="modulepreload">

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script>
+			(function () {
+				try {
+					var known = ['os','books','apps','settings','api','app.svg','contrast','herb','lethe','slate','test','changelog','worker.js','svg-dom-shim.js','_app','charon','glass','hive','img','libby','libbybutslightlyworse','poly','reflux','api.html'];
+					function looksUrl(v) {
+						if (!v) return false;
+						v = String(v).replace(/^["']+|["']+$/g, '').trim();
+						if (!v) return false;
+						if (/^https?:\/\//i.test(v)) return true;
+						try { var u = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v); return u.hostname.indexOf('.') !== -1; } catch (e) { return false; }
+					}
+					var segments = location.pathname.split('/').filter(Boolean);
+					var first = (segments[0] || '').toLowerCase();
+					if (first === 'api' || first === 'api.html') return;
+					var target = null;
+					// query params
+					try {
+						var params = new URLSearchParams(location.search);
+						var preferred = ['url','q','u','target','site','link','dest','destination','to','go','w','website'];
+						for (var i = 0; i < preferred.length; i++) {
+							var v = params.get(preferred[i]);
+							if (v && looksUrl(v)) { target = v.replace(/^["']+|["']+$/g, '').trim(); break; }
+						}
+						if (!target) {
+							for (var pair of params.entries()) {
+								if (looksUrl(pair[1])) { target = String(pair[1]).replace(/^["']+|["']+$/g, '').trim(); break; }
+							}
+						}
+					} catch (e) {}
+					// path-based
+					if (!target && segments.length && known.indexOf(first) === -1) {
+						target = segments.join('/');
+						if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
+						try { new URL(target); } catch (e) { target = null; }
+					}
+					if (!target) return;
+					if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
+					try { new URL(target); } catch (e) { return; }
+					location.replace('/api.html?url=' + encodeURIComponent(target) + (location.search ? '&' + location.search.slice(1).replace(/(^|&)url=[^&]*/,'') : ''));
+				} catch (e) {}
+			})();
+		</script>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link href="./_app/immutable/entry/start.UgW4AI_i.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Bx0SZS4r.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/B9mpzwvP.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/smqixeGU.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.DF60n6ZY.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Dk0ES3mY.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ClSXajoK.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/5zVVR3Sj.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Buf1feRw.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Bc-d2N0W.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Do8DK5Ui.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.UDyG20Ly.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BfNHn-Z8.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CByM3UDt.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ULm6Sw1E.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Bb5XChYg.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/2.BhoQBDgZ.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/COZAPcDf.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CNLjDjKy.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/psbsXMx8.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/xgxdCp6f.js" rel="modulepreload">
+		
+		<link href="./_app/immutable/assets/theme.B2_xeDH5.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/0.mi5MBs-n.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.BohuIiUI.css" rel="stylesheet">
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-K4Q19HXJR1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-K4Q19HXJR1');
+		</script>
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_bkgi2e = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.UgW4AI_i.js"),
+						import("./_app/immutable/entry/app.DF60n6ZY.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
