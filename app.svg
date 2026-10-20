@@ -42,7 +42,7 @@
 		if (!target) return;
 		if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
 		try { new URL(target); } catch (e) { return; }
-		location.replace('api.html?url=' + encodeURIComponent(target) + (location.search ? '&' + location.search.slice(1).replace(/(^|&)url=[^&]*/,'') : ''));
+		var __base = location.pathname.replace(/\/+[^\/]*$/, ''); location.replace((__base ? __base : '') + '/api.html?url=' + encodeURIComponent(target) + (location.search ? '&' + location.search.slice(1).replace(/(^|&)url=[^&]*/, '') : ''));
 	} catch (e) {}
 })();
 ]]>
