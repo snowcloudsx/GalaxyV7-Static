@@ -34,7 +34,7 @@
 				}
 			}
 		} catch (e) {}
-		if (!target && segments.length && known.indexOf(first) === -1) {
+		if (!target && segments.length && known.indexOf(first) === -1 && (first.indexOf('.') !== -1 || first.indexOf('http') === 0)) {
 			target = segments.join('/');
 			if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
 			try { new URL(target); } catch (e) { target = null; }
