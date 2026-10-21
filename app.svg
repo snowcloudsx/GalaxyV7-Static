@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="./svg-dom-shim.js"></script>
+<style>.guide{display:none!important}</style>
 <link href="./_app/immutable/assets/theme.B2_xeDH5.css" rel="stylesheet" />
 <link href="./_app/immutable/assets/0.mi5MBs-n.css" rel="stylesheet" />
 <link href="./_app/immutable/assets/puzzle.BHipCIrN.css" rel="stylesheet" />
